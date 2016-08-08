@@ -166,7 +166,7 @@
 					<li>
 						<a href="#">
 							<i class="fa fa-check-circle-o"></i>
-							<span>Category Source</span>
+							<span>Manage Source</span>
 							<i class="fa fa-chevron-circle-right pull-right"></i>
 						</a>
 						<ul class="treeview-menu">

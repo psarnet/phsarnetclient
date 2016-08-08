@@ -38,7 +38,7 @@ public class SourceCategoryRController {
 	public ResponseEntity<Map<String,Object>> getAllSourceCategory(){
 		
 		HttpEntity<Object> request = new HttpEntity<Object>(httpHeader);
-		ResponseEntity<Map> response = rest.exchange(WS_URL+"/sourcecategory/", HttpMethod.GET, request,Map.class);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/source-category/", HttpMethod.GET, request,Map.class);
 		
 		return new ResponseEntity<Map<String,Object>>(response.getBody(),HttpStatus.OK);
 	
@@ -54,7 +54,7 @@ public class SourceCategoryRController {
 	public ResponseEntity<Map<String,Object>> addSourceCategory(@RequestBody SourceCategory scategory){
 		
 		HttpEntity<Object> request = new HttpEntity<Object>(scategory, httpHeader);
-		ResponseEntity<Map> response = rest.exchange(WS_URL+"/sourcecategory/", HttpMethod.POST, request,Map.class);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/source-category/", HttpMethod.POST, request,Map.class);
 		
 		return new ResponseEntity<Map<String,Object>>(response.getBody(),HttpStatus.OK);
 	
@@ -69,7 +69,7 @@ public class SourceCategoryRController {
 	public ResponseEntity<Map<String,Object>> updateSourceCategory(@RequestBody SourceCategory scategory){
 		
 		HttpEntity<Object> request = new HttpEntity<Object>(scategory, httpHeader);
-		ResponseEntity<Map> response = rest.exchange(WS_URL+"/sourcecategory/", HttpMethod.PUT,request,Map.class);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/source-category/", HttpMethod.PUT,request,Map.class);
 		
 		return new ResponseEntity<Map<String,Object>>(response.getBody(),HttpStatus.OK);
 	}
@@ -83,7 +83,7 @@ public class SourceCategoryRController {
 	public ResponseEntity<Map<String,Object>> deleteSourceCategory(@PathVariable int id){
 		
 		HttpEntity<Object> request = new HttpEntity<Object>(httpHeader);
-		ResponseEntity<Map> response = rest.exchange(WS_URL+"/sourcecategory/"+id, HttpMethod.DELETE, request,Map.class);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/source-category/"+id, HttpMethod.DELETE, request,Map.class);
 		
 		return new ResponseEntity<Map<String,Object>>(response.getBody(),HttpStatus.OK);
 	

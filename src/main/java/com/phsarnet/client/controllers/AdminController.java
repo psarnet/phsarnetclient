@@ -90,5 +90,24 @@ public class AdminController {
 		return "admin/subtwocategory";
 	}
 	
+	/*
+	 * Request add-module page
+	 */
+	@RequestMapping(value="/addmodule", method = RequestMethod.GET)
+	public String addModule(ModelMap m)
+	{
+		m.addAttribute("title", "Admin >> Add-Module");
+		return "admin/addmodule";
+	}
+	
+	/*
+	 * Request map-category page
+	 */
+	@RequestMapping(value="/mapcategory", method = RequestMethod.GET)
+	public String mapCategory(ModelMap m)
+	{
+		m.addAttribute("title", "Admin >> Mapping-Category");
+		return "admin/mapcategory";
+	}
 	
 }
