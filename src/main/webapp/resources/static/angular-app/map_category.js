@@ -29,13 +29,7 @@ app.controller('mapCategoryController', function($scope, $http){
 	 	}*/
 	});
 	
-	/**
-	 * Get Data from temerory table by source id
-	 */
-	$scope.getTemProductBySourceId = function(id)
-	{
-		alert(id);
-	}
+	
 	/**
 		Get main category 
 	*/
@@ -125,5 +119,35 @@ app.controller('mapCategoryController', function($scope, $http){
 		
 	}
 	
+	/**
+	 * Get Data from temerory table by source id
+	 */
+	$scope.getTemProductBySourceId = function(id)
+	{
+		alert(id);
+	}
 	
+	/**
+	 * Check out of product
+	 */
+	$scope.checkOut = function()
+	{
+		$("#tr").hide();
+	}
+	
+	/**
+	 * Change Event
+	 */
+	$scope.change = function()
+	{
+		alert(1);
+	}
+	
+	/**
+	 * Add Product all products had mapped 
+	 */
+	$scope.addDataToProduct = function (list)
+	{
+		//alert(1);
+	}
 });
