@@ -1,11 +1,12 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/pages/page-layout/admin-layout/header.jsp"></jsp:include>
 
+<div id="container" ng-app="map_category_app" ng-controller="mapCategoryController">
 <aside class="right-side">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			<i class="fa fa-bars" aria-hidden="true"></i> <small>Mapping
-				Category</small>
+			<i class="fa fa-bars" aria-hidden="true"></i> 
+			<small>Mapping Category</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
@@ -15,45 +16,64 @@
 
 	<!-- table -->
 	<div class="panel-body">
-		<div class="dataTable_wrapper">
-			<div class="row">
-				<div class="col-xs-12 table-responsive">
-					<table class="table table-bordered  table-hover">
-						<thead>
-							<tr style="background-color: #4682B4; color: white;">
-								<th>No</th>
-								<th class="col-md-3">CategoryName</th>
-								<th class="col-md-2">ProductName</th>
-								<th class="col-md-3">Images</th>
-								<th class="col-md-3">Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>
-									<button type="button" class="btn btn-default">
-										<i class="fa fa-times" aria-hidden="true"></i>
-									</button>
-									<button type="button" class="btn btn-default btn-sm map"
-										data-toggle="modal" data-target="#exampleModalEdit"
-										data-whatever="@mdo">Mapping</button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="dataTable_wrapper">
+					<h3>Website</h3>
+					<ul class="list-group" ng-repeat="list in getSource">
+					  <li class="list-group-item">
+							{{list.DOMAIN}} 
+							<ul ng-repeat="listsub in list.SOURCE_CATEGORY">
+								<li>
+									
+									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">{{listsub.SOURCE_CATEGORY}}</a>
+									<span class="badge bg-green">6</span>
+								</li>
+							</ul>
+					  </li>
+					</ul>
 				</div>
 			</div>
-
-			<div class="col-xs-12">
-				<button class="btn btn-primary pull-right">Clear</button>
+			<div class="col-lg-9 jumbo">
+				<div class="dataTable_wrapper">
+					<h3>Result</h3>
+					<div class="row" style="background-color:white; border-radius: 5px;">
+						<div class="col-xs-12">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th class="col-md-3">CategoryName</th>
+										<th class="col-md-2">ProductName</th>
+										<th class="col-md-3">Images</th>
+										<th class="col-md-3">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>
+											<button type="button" class="btn btn-default">
+												<i class="fa fa-times" aria-hidden="true"></i>
+											</button>
+											<button type="button" class="btn btn-default btn-sm map"
+												data-toggle="modal" data-target="#exampleModalEdit"
+												data-whatever="@mdo">Mapping</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+		
+					
+				</div>
 			</div>
-
-
 		</div>
+		
 	</div>
 	<script type="text/javascript">
 		var userName = document.getElementById("username");
@@ -108,6 +128,6 @@
 		</div>
 	</div>
 
-
-
+	
+	<script src="${pageContext.request.contextPath}/resources/static/angular-app/map_category.js"></script>
 	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/pages/page-layout/admin-layout/footer.jsp"></jsp:include>

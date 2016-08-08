@@ -19,11 +19,21 @@
 .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side{
 	background-color:#3f8ab5;
 }
-th,tr{
+/* th,tr{
 	border:1.42px solid #4682B4 !important;
 }
 td{
 	border:1.42px solid gray !important;
+} */
+.panel-body ul{
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+.panel-body li{
+	padding-top: 10px;
+	padding-left: 10px;
+	list-style: none;
+	
 }
 .skin-blue .sidebar-menu > li > .treeview-menu{
 	background: rgba(214, 221, 225, 0.25);

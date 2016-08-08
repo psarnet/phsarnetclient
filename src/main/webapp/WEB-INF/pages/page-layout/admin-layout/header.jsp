@@ -187,9 +187,11 @@
 							Scrapping Data</a></li>
 				</ul></li>
 			<!-- User -->
-			<li class="treeview"><a href="#"> <i class="fa fa-user-plus"></i>
-					<span>User</span> <i class="fa fa-chevron-circle-right pull-right"></i>
-			</a>
+			<li class="treeview">
+				<a href="#"> <i class="fa fa-user-plus"></i>
+					<span>User</span> 
+					<i class="fa fa-chevron-circle-right pull-right"></i>
+				</a>
 				<ul class="treeview-menu">
 					<li><a href="${pageContext.request.contextPath}/admin/user"><i class="fa fa-check-circle-o"></i>
 							User Detials</a></li>
@@ -197,7 +199,8 @@
 							class="fa fa-check-circle-o"></i> Change Password</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/login"><i class="fa fa-check-circle-o"></i>Sign
 							Out</a></li>
-				</ul></li>
+				</ul>
+			</li>
 		</ul>
 		</section> 
 	</aside>
