@@ -18,6 +18,16 @@ app.controller('sourceController', function($scope, $http){
 	 	
 	});
 	
+	/**
+	 * Call main source api
+	 */
+	$http.get("http://localhost:9999/rest/sub-two-category/get-all")
+	 .then(function(respone){
+		
+	 	$scope.categorylists = respone.data.DATA;	
+	 	
+	});
+	
 	/**-
 		Get Source 
 	*/
@@ -54,8 +64,11 @@ app.controller('sourceController', function($scope, $http){
 			SOURCE			: 
 			{
 				ID			: $scope.main_source_id
+			},
+			SUB_CATEGORY	:
+			{
+				ID			: $scope.sub_category_id
 			}
-			
 		}
 		$http. post("http://localhost:9999/rest/source-category/add", post_data)
 		 	 . success(function(respone){

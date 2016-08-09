@@ -57,6 +57,7 @@
 								<th class="col-md-2">Source-Category</th>
 								<th class="col-md-2">status</th>
 								<th class="col-md-2">Domain</th>
+								<th class="col-md-2">Sub-Category</th>
 								<th class="col-md-2">Action</th>
 							</tr>
 						</thead>
@@ -66,6 +67,7 @@
 								<td>{{list.SOURCE_CATEGORY}}</td>
 								<td>{{list.STATUS}}</td>
 								<th>{{list.SOURCE.DOMAIN}}</th>
+								<th>{{list.SUB_CATEGORY.SUB_CATEGORY}}</th>
 								<td>
 									<button ng-click="sendDataToUpdate(list)" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModalEdit" data-whatever="@mdo">
 										Edit
@@ -143,10 +145,19 @@
 								<option ng-repeat="list in mainlists" value="{{list.ID}}">{{list.DOMAIN}}</option>
 							</select>
 						</div>
+						
+						<div class="form-group">
+							<label>Choose Sub-Category</label>
+							<select class="form-control" name="sub_category_id" ng-model="sub_category_id" >
+								<option ng-repeat="list in categorylists" value="{{list.ID}}">{{list.SUB_CATEGORY}}</option>
+							</select>
+						</div>
+						
 						<div class="form-group">
 							<label>Source-Category Name</label>
 							<input name="source_category" ng-model="source_category" class="form-control" placeholder="Enter source category name" required />
 						</div>
+
 						<div class="form-group">
 							<label>Status </label> <br/>
 							<input type="radio" name="status" ng-model="status" value="true" required>True |

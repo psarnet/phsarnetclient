@@ -25,13 +25,61 @@
 							{{list.DOMAIN}} 
 							<ul ng-repeat="listsub in list.SOURCE_CATEGORY">
 								<li>
-									
 									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">{{listsub.SOURCE_CATEGORY}}</a>
 									<span class="badge bg-green">6</span>
 								</li>
 							</ul>
 					  </li>
+					</ul> 
+					
+					<!-- <ul class="list-group">
+					  <li class="list-group-item">
+							www.khmer24.com
+							<ul>
+								<li>
+									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">/khmer24/category1</a>
+									<span class="badge bg-green">10</span>
+								</li>
+								<li>
+									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">/khmer24/category2</a>
+									<span class="badge bg-green">5</span>
+								</li>
+								<li>
+									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">/khmer24/category3</a>
+									<span class="badge bg-green">30</span>
+								</li>
+							</ul>
+							
+					  </li>
 					</ul>
+					<ul class="list-group">
+						<li class="list-group-item">
+							www.khbuy.com
+							<ul>
+								<li>
+									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">/khbuy/category1</a>
+									<span class="badge bg-green">5</span>
+								</li>
+								<li>
+									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">/khbuy/category2</a>
+									<span class="badge bg-green">10</span>
+								</li>
+								<li>
+									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">/khbuy/category3</a>
+									<span class="badge bg-green">20</span>
+								</li>
+								<li>
+									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">/khbuy/category4</a>
+									<span class="badge bg-green">20</span>
+								</li>
+							</ul>
+					  </li>
+					</ul>
+					<ul class="list-group">
+						<li class="list-group-item">
+							www.kaymu.com
+						</li>
+					</ul> -->
 				</div>
 			</div>
 			<div class="col-lg-9 jumbo">
@@ -44,18 +92,21 @@
 								<thead>
 									<tr>
 										<th>No</th>
-										<th class="col-md-3">CategoryName</th>
 										<th class="col-md-2">ProductName</th>
+										<th class="col-md-2">Price</th>
 										<th class="col-md-3">Images</th>
+										<th class="col-md-3">URL</th>
 										<th class="col-md-3">Action</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr style="border-button: 2px solid gray;">
 										<td>1</td>
-										<td>/url</td>
-										<td>Item</td>
-										<td>/img</td>
+										<td>item</td>
+										<td>Price</td>
+										<td>/link/img.png</td>
+										<td>/item/url</td>
+										
 										<td> 
 											<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Check Out">
 												<i class="fa fa-times" aria-hidden="true"></i>
@@ -63,10 +114,12 @@
 										</td>
 									</tr>
 									<tr style="border-button: 2px solid gray;" id="tr">
-										<td>1</td>
-										<td>/url</td>
-										<td>Item</td>
-										<td>/img</td>
+										<td>2</td>
+										<td>item</td>
+										<td>price</td>
+										<td>/linkg/img.png</td>
+										<td>/item/url</td>
+										
 										<td> 
 											<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Check Out" ng-click="checkOut()">
 												<i class="fa fa-times" aria-hidden="true"></i>
@@ -78,6 +131,12 @@
 										</td>
 									</tr>
 									<tr>
+										<td>
+											<button type="button" class="btn btn-default btn-sm map"
+												data-toggle="modal" data-target="#exampleModalEdit"
+												data-whatever="@mdo" ng-click="addDataToProduct(list)">Map To Category
+											</button>
+										</td>
 										<td>
 											<button type="button" class="btn btn-default btn-sm map"
 												data-toggle="modal" data-target="#exampleModalEdit"

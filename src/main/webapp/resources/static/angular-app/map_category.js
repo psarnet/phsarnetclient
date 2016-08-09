@@ -132,7 +132,11 @@ app.controller('mapCategoryController', function($scope, $http){
 	 */
 	$scope.checkOut = function()
 	{
-		$("#tr").hide();
+		
+		$("#tr").css({
+			'background-color':'ghostwhite',
+			'color':'red'
+			});
 	}
 	
 	/**

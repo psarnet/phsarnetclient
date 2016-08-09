@@ -2,6 +2,7 @@ package com.phsarnet.client.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class SourceCategory {
 	
 	@JsonProperty("ID")
@@ -16,6 +17,9 @@ public class SourceCategory {
 	@JsonProperty("SOURCE")
 	private Source source;
 
+	@JsonProperty("SUB_CATEGORY")
+	private SubTwoCategory subCategory;
+	
 	public int getSourcecategoryid() {
 		return sourcecategoryid;
 	}
@@ -46,6 +50,14 @@ public class SourceCategory {
 
 	public void setSource(Source source) {
 		this.source = source;
+	}
+
+	public SubTwoCategory getSubCategory() {
+		return subCategory;
+	}
+
+	public void setSubCategory(SubTwoCategory subCategory) {
+		this.subCategory = subCategory;
 	}
 
 
