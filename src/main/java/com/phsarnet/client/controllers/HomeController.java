@@ -18,4 +18,15 @@ public class HomeController {
 		m.addAttribute("title", "Home");
 		return "home/index";
 	}
+	@RequestMapping(value="/product",method=RequestMethod.GET)
+	public String product(ModelMap m){
+		m.addAttribute("title","Product");
+		return "home/product";
+	}
+	@RequestMapping(value="/wishlist",method=RequestMethod.GET)
+	public String wishlist(ModelMap m){
+		m.addAttribute("title","WishList");
+		return "home/wishlist";
+		
+	}
 }

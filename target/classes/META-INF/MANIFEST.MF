@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: PHSARNET_CLIENT
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: kpsec20
+Built-By: THEARY
 Implementation-Vendor-Id: com.phsarnet.client
-Build-Jdk: 1.8.0_60
+Build-Jdk: 1.8.0_92
 Implementation-URL: http://projects.spring.io/spring-boot/demo/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
