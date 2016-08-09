@@ -7,7 +7,7 @@ public class SourceCategory {
 	@JsonProperty("ID")
 	private int sourcecategoryid;
 	
-	@JsonProperty("SOURCE-CATEGORY")
+	@JsonProperty("SOURCE_CATEGORY")
 	private String sourcecategory;
 	
 	@JsonProperty("STATUS")

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -45,6 +46,19 @@ public class SouceRController {
 	
 	}
 	
+	/**
+	 * Request source objec from API as get
+	 * @return source as JSON 
+	 */
+	@RequestMapping(value="/get-object",method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> getSourceObject(){
+		
+		HttpEntity<Object> request = new HttpEntity<Object>(httpHeader);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/source/get-object", HttpMethod.GET, request,Map.class);
+		
+		return new ResponseEntity<Map<String,Object>>(response.getBody(),HttpStatus.OK);
+	
+	}
 
 	/**
 	 * Post Data to source in API

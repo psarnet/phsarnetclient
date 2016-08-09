@@ -19,10 +19,10 @@ public class Source {
 	@JsonProperty("ROWS")
 	private String rowsselector;
 	
-	@JsonProperty("SELECTOR-IMAGE")
+	@JsonProperty("SELECTOR_IMAGE")
 	private String imageselector;
 	
-	@JsonProperty("SELECTOR-IMAGE-ATTRIBUTE")
+	@JsonProperty("IMAGE_ATTRIBUTE")
 	private String imageattribute;
 	
 	@JsonProperty("LINK")
