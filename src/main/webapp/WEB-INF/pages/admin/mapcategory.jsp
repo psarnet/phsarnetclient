@@ -1,5 +1,7 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/pages/page-layout/admin-layout/header.jsp"></jsp:include>
 
+
+
 <div id="container" ng-app="map_category_app" ng-controller="mapCategoryController">
 <aside class="right-side">
 	<!-- Content Header (Page header) -->
@@ -15,6 +17,8 @@
 	</section>
 
 	<!-- table -->
+	
+	
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-lg-3">
@@ -26,60 +30,11 @@
 							<ul ng-repeat="listsub in list.SOURCE_CATEGORY">
 								<li>
 									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">{{listsub.SOURCE_CATEGORY}}</a>
-									<span class="badge bg-green">6</span>
-								</li>
-							</ul>
-					  </li>
-					</ul> 
-					
-					<!-- <ul class="list-group">
-					  <li class="list-group-item">
-							www.khmer24.com
-							<ul>
-								<li>
-									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">/khmer24/category1</a>
-									<span class="badge bg-green">10</span>
-								</li>
-								<li>
-									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">/khmer24/category2</a>
-									<span class="badge bg-green">5</span>
-								</li>
-								<li>
-									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">/khmer24/category3</a>
-									<span class="badge bg-green">30</span>
-								</li>
-							</ul>
-							
-					  </li>
-					</ul>
-					<ul class="list-group">
-						<li class="list-group-item">
-							www.khbuy.com
-							<ul>
-								<li>
-									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">/khbuy/category1</a>
-									<span class="badge bg-green">5</span>
-								</li>
-								<li>
-									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">/khbuy/category2</a>
-									<span class="badge bg-green">10</span>
-								</li>
-								<li>
-									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">/khbuy/category3</a>
-									<span class="badge bg-green">20</span>
-								</li>
-								<li>
-									<a href="#" ng-click="getTemProductBySourceId(listsub.ID)">/khbuy/category4</a>
-									<span class="badge bg-green">20</span>
+									<span class="badge bg-green">{{getTemProduct.length}}</span>
 								</li>
 							</ul>
 					  </li>
 					</ul>
-					<ul class="list-group">
-						<li class="list-group-item">
-							www.kaymu.com
-						</li>
-					</ul> -->
 				</div>
 			</div>
 			<div class="col-lg-9 jumbo">
@@ -88,64 +43,39 @@
 					<div class="row" style="background-color:white; border-radius: 5px;">
 						<div class="col-xs-12">
 							<form>
-							<table class="table">
-								<thead>
-									<tr>
-										<th>No</th>
-										<th class="col-md-2">ProductName</th>
-										<th class="col-md-2">Price</th>
-										<th class="col-md-3">Images</th>
-										<th class="col-md-3">URL</th>
-										<th class="col-md-3">Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr style="border-button: 2px solid gray;">
-										<td>1</td>
-										<td>item</td>
-										<td>Price</td>
-										<td>/link/img.png</td>
-										<td>/item/url</td>
-										
-										<td> 
-											<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Check Out">
-												<i class="fa fa-times" aria-hidden="true"></i>
-											</button>
-										</td>
-									</tr>
-									<tr style="border-button: 2px solid gray;" id="tr">
-										<td>2</td>
-										<td>item</td>
-										<td>price</td>
-										<td>/linkg/img.png</td>
-										<td>/item/url</td>
-										
-										<td> 
-											<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Check Out" ng-click="checkOut()">
-												<i class="fa fa-times" aria-hidden="true"></i>
-											</button>
-											<!-- <button type="button" class="btn btn-default btn-sm map"
-												data-toggle="modal" data-target="#exampleModalEdit"
-												data-whatever="@mdo">Mapping
-											</button> -->
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<button type="button" class="btn btn-default btn-sm map"
-												data-toggle="modal" data-target="#exampleModalEdit"
-												data-whatever="@mdo" ng-click="addDataToProduct(list)">Map To Category
-											</button>
-										</td>
-										<td>
-											<button type="button" class="btn btn-default btn-sm map"
-												data-toggle="modal" data-target="#exampleModalEdit"
-												data-whatever="@mdo" ng-click="addDataToProduct(list)">Map To Category
-											</button>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Image</th>
+											<th class="col-md-3">URL</th>
+											<th class="col-md-3">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr style="border-button: 2px solid gray;" ng-hide="hide" ng-repeat="listP in getTemProduct">
+											<td>{{listP.IMAGE}}</td>
+											<td>{{listP.URL}}</td>
+											
+											<td> 
+												<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Check Out" ng-click="checkOut()">
+													<i class="fa fa-times" aria-hidden="true"></i>
+												</button>
+											</td>
+										</tr>
+								
+										<tr>
+											<td ng-init="">
+												<button type="button" class="btn btn-default btn-sm map" ng-disabled="true"
+													data-toggle="modal" data-target="#exampleModalEdit"
+													data-whatever="@mdo" ng-click="addDataToProduct(list)">Map To Category
+												</button>
+												<button type="button" class="btn btn-default btn-sm map"
+													 ng-click="addDataToProduct(getTemProduct)">Save All
+												</button>
+											</td>
+										</tr> 
+									</tbody>
+								</table>
 							</form>
 						</div>
 					</div>

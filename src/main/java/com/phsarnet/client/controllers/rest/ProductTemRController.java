@@ -43,6 +43,19 @@ public class ProductTemRController {
 		return new ResponseEntity<Map<String,Object>>(response.getBody(),HttpStatus.OK);
 	
 	}
+	/**
+	 * Request product from API as get by source id
+	 * @return product as JSON 
+	 */
+	@RequestMapping(value="/get-product-by-id/{id}",method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> getProductTemperoryById(@PathVariable int id){
+		
+		HttpEntity<Object> request = new HttpEntity<Object>(httpHeader);
+		ResponseEntity<Map> response = rest.exchange(WS_URL+"/product-temperory/get-by-id/"+id, HttpMethod.GET, request,Map.class);
+		
+		return new ResponseEntity<Map<String,Object>>(response.getBody(),HttpStatus.OK);
+	
+	}
 	
 	
 	/**

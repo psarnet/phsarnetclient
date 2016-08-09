@@ -15,18 +15,6 @@ app.controller('mapCategoryController', function($scope, $http){
 	$http.get("http://localhost:9999/rest/source/get-object")
 	 .then(function(respone){
 		 $scope.getSource = respone.data.DATA;	
-	 	//console.log(get);
-	 	
-	 	/*for( var i=0;i<get.length ;i ++){
-	 		console.log($scope.getSource[i].DOMAIN);
-	 		var main=get[i].SOURCE_CATEGORY;
-	 		
-	 		for( var j=0;j< main.length ;j ++){
-		 		console.log(main[j].STATUS);
-		 		if(main[j].STATUS == false)
-		 			$scope.getSource = respone.data.DATA;
-		 	}
-	 	}*/
 	});
 	
 	
@@ -38,9 +26,6 @@ app.controller('mapCategoryController', function($scope, $http){
 		 .then(function(respone){
 		 	$scope.lists = respone.data.DATA;			
 		});
-		/*.error(function(status){
-			console.log(status);
-		});*/
 	};
 	
 	/**
@@ -124,19 +109,25 @@ app.controller('mapCategoryController', function($scope, $http){
 	 */
 	$scope.getTemProductBySourceId = function(id)
 	{
-		alert(id);
+		$http.get("http://localhost:9999/rest/product-temperory/get-product-by-id/"+id)
+		 .then(function(respone){
+			 $scope.getTemProduct = respone.data.DATA;	
+			 console.log(respone.data.DATA);
+		});
 	}
 	
 	/**
 	 * Check out of product
 	 */
+	$scope.hide = false;
 	$scope.checkOut = function()
 	{
-		
+		$scope.hide != $scope.hide;
+		/*
 		$("#tr").css({
 			'background-color':'ghostwhite',
 			'color':'red'
-			});
+			});*/
 	}
 	
 	/**
@@ -150,8 +141,19 @@ app.controller('mapCategoryController', function($scope, $http){
 	/**
 	 * Add Product all products had mapped 
 	 */
-	$scope.addDataToProduct = function (list)
+	$scope.addDataToProduct = function()
 	{
-		//alert(1);
+		
+		alert($scope.getTemProduct);
 	}
+	
+	
+	/**
+	 * Test
+	 */
+	
+
+  
+
+
 });
