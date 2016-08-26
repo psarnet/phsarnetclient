@@ -32,22 +32,11 @@
 										</div>
 
 										<div class="col-md-4 pull-right">
-											<form class="navbar-form" role="search">
-												<div class="pull-right" style="margin-top: -8px;">
-													<div class="input-group">
-														<div class="input-group-btn">
-															<input type="text" class="form-control"
-																placeholder="Search" name="srch-normal" id="search">
-														</div>
-														<div class="input-group-btn">
-															<button class="btn btn-default search"
-																style="height: 34px;" type="submit" name="btnSearch">
-																<span class="fa fa-search"></span>
-															</button>
-														</div>
-													</div>
-												</div>
-											</form>
+											<i class="fa fa-filter" aria-hidden="true"></i>
+											<label>FilterBySourceCategory : </label>
+											<select ng-model="source" ng-change="filterSourceCategory(source)" data-ng-options="list as list.DOMAIN for list in mainlists">
+												<option value="" selected="selected">..Show All....</option>
+											</select>
 										</div>
 									</tr>
 								</thead>
@@ -78,13 +67,11 @@
 							</tr>
 						</tbody>
 					</table>
+					<div id="pagination">
+						<!-- Display pagination here -->
+					</div>
 				</div>
 			</div>
-			<div class="col-xs-12">
-				<button class="btn btn-primary pull-right">Clear</button>
-			</div>
-
-
 		</div>
 	</div>
 

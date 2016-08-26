@@ -53,29 +53,31 @@
 								</thead>
 						<thead>
 							<tr style="background-color: #4682B4; color: white;">
-								<th>ID</th>
-								<th class="col-md-2">Domain</th>
-								<th class="col-md-2">Logo</th>
-								<th class="col-md-2">Row-Selector</th>
-								<th class="col-md-2">Image-Selector</th>
-								<th class="col-md-2">Image-Attribute</th>
-								<th class="col-md-2">Link</th>
-								<th class="col-md-2">Title</th>
-								<th class="col-md-2">Price</th>
-								<th class="col-md-2">Action</th>
+								<th class="col-md-1">Domain</th>
+								<th class="col-md-1">Logo</th>
+								<th class="col-md-1">Rows</th>
+								<th class="col-md-1">Image-Selector</th>
+								<th class="col-md-1">Image-Attribute</th>
+								<th class="col-md-1">Link</th>
+								<th class="col-md-1">Title</th>
+								<th class="col-md-1">Price</th>
+								<th class="col-md-1">Link-Prefix</th>
+								<th class="col-md-1">Img-Prefix</th>
+								<th class="col-md-1">Action</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr ng-repeat="list in lists">
-								<td>{{list.ID}}</td>
 								<td>{{list.DOMAIN}}</td>
-								<td>{{list.LOGO}}</td>
-								<td>{{list.ROWS}}</td>
-								<td>{{list.SELECTOR_IMAGE}}</td>
-								<td>{{list.IMAGE_ATTRIBUTE}}</td>
-								<td>{{list.LINK}}</td>
-								<td>{{list.TITLE}}</td>
-								<td>{{list.PRICE}}</td>
+								<td>{{list.LOGO | limitTo:5}}...</td>
+								<td>{{list.ROWS | limitTo:5}}...</td>
+								<td>{{list.SELECTOR_IMAGE | limitTo: 5}}...</td>
+								<td>{{list.IMAGE_ATTRIBUTE | limitTo: 5}}...</td>
+								<td>{{list.LINK | limitTo: 5}}...</td>
+								<td>{{list.TITLE | limitTo: 5}}...</td>
+								<td>{{list.PRICE | limitTo: 5}}...</td>
+								<td>{{list.PREFIX_LINK | limitTo: 5}}...</td>
+								<td>{{list.PREFIX_IMAGE | limitTo: 5}}...</td>
 								<td>
 									<button ng-click="sendDataToUpdate(list)" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModalEdit" data-whatever="@mdo">
 										Edit
@@ -88,11 +90,6 @@
 					</table>
 				</div>
 			</div>
-			<div class="col-xs-12">
-				<button class="btn btn-primary pull-right">Clear</button>
-			</div>
-
-
 		</div>
 	</div>
 
@@ -149,12 +146,22 @@
 						<input value="{{nprice}}" ng-model="nprice" type="text" class="form-control" placeholder="Enter price" required />
 					</div>
 					
+					<div class="form-group">
+						<label>Link Prefix</label>
+						<input value="{{nlinkprefix}}" ng-model="nlinkprefix" type="text" class="form-control" placeholder="Enter link prefix" />
+					</div>
+					
+					<div class="form-group">
+						<label>Image Prefix</label>
+						<input value="{{nimgprefix}}" ng-model="nimgprefix" type="text" class="form-control" placeholder="Enter image prefix" />
+					</div>
+					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button type="button" data-dismiss="modal" class="btn btn-primary" ng-click="updateCategory()">Update</button>
 					</div>
-					
 				</form>
+				
 		</div>
 	</div>
 </div>
@@ -210,18 +217,23 @@
 						<input name="price" ng-model="price" type="text" class="form-control" placeholder="Enter price" required />
 					</div>
 					
+					<div class="form-group">
+						<label>Link Prefix</label>
+						<input name="prefixlink" ng-model="prefixlink" type="text" class="form-control" placeholder="Enter Link Prefix" />
+					</div>
+					
+					<div class="form-group">
+						<label>Image Prefix</label>
+						<input name="prefiximage" ng-model="prefiximage" type="text" class="form-control" placeholder="Enter Image Prefix" />
+					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button type="button" data-dismiss="modal" class="btn btn-primary" ng-click="addNew()">Save</button>
 					</div>
-					
 				</form>
 			</div>
-			
 		</div>
 	</div>
 
-
-	
 	<script src="${pageContext.request.contextPath}/resources/static/angular-app/source_app.js"></script>
 	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/pages/page-layout/admin-layout/footer.jsp"></jsp:include>

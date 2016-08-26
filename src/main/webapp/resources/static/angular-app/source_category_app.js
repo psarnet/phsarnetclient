@@ -11,43 +11,83 @@ app.controller('sourceController', function($scope, $http){
 	/**
 	 * Call main source api
 	 */
-	$http.get("http://localhost:9999/rest/source/get-all")
+	$http({
+		method 	: 'GET',
+		url		: URL_API+'source/get-join-onetomany',
+		headers	:
+			{
+				'Authorization': KEYS
+			}
+	})
 	 .then(function(respone){
 		
-	 	$scope.mainlists = respone.data.DATA;	
+	 	$scope.mainlists = respone.data.DATA;
+	 	console.log($scope.mainlists+"MAIN LIST");
 	 	
 	});
 	
 	/**
 	 * Call main source api
 	 */
-	$http.get("http://localhost:9999/rest/sub-two-category/get-all")
-	 .then(function(respone){
-		
-	 	$scope.categorylists = respone.data.DATA;	
-	 	
+	$http({
+		url		:	URL_API+'sub-two-category',
+		method	:	'get',
+		headers	:	{ 'Authorization': KEYS }
+	}).then(function(response){
+		$scope.categorylists = response.data.DATA;	
 	});
+
+	
+	var pagin = {
+			page:1,
+			limit:20
+		};
+
+		var PAGINATION = $('#pagination');
+
+		PAGINATION.on("page", function(event, num){
+			pagin.page = num;
+			$scope.getSource();
+		});
 	
 	/**-
 		Get Source 
 	*/
 	$scope.getSource = function(){
-		$http.get("http://localhost:9999/rest/source-category/get-all")
-		 .then(function(respone){
-			
-		 	$scope.lists = respone.data.DATA;	
-		 	console.log(respone.data.DATA);
-		 	
+		$http({
+			url		:	URL_API+'source-category',
+			method	:	'get',
+			params	:	pagin,
+			headers	:	{ 'Authorization': KEYS }
+		}).then(function(response){
+			PAGINATION.bootpag({
+			    total: response.data.PAGING.TOTAL_PAGES
+			});
+			$scope.lists = response.data.DATA;	
 		});
 	};
-	
-	
 	/**
-	 * Call source function
+	 * Call get source function
 	 * 
 	 */
 	$scope.getSource();
 	
+	
+	/**
+	 * Filter source category by website
+	 */
+	$scope.sourcecategory = [];
+	$scope.filterSourceCategory = function(source){
+		if(source != null)
+		{
+			PAGINATION.hide();
+			$scope.sourcecategory = source.SOURCE_CATEGORY;
+			$scope.lists = $scope.sourcecategory;
+			return;
+		}
+		$scope.getSource();
+		PAGINATION.show();
+	}
 	
 	/**
 	 * Function add source
@@ -70,7 +110,7 @@ app.controller('sourceController', function($scope, $http){
 				ID			: $scope.sub_category_id
 			}
 		}
-		$http. post("http://localhost:9999/rest/source-category/add", post_data)
+		$http. post(URL_CLIENT+"source-category/add", post_data)
 		 	 . success(function(respone){
 		 		 	$scope.getSource();
 		 	 	})
@@ -86,7 +126,7 @@ app.controller('sourceController', function($scope, $http){
 		
 		var conf = confirm("Are you sure want to delete?");
 		if(conf){
-			$http. delete("http://localhost:9999/rest/source-category/delete/"+ id)
+			$http. delete(URL_CLIENT+"source-category/delete/"+ id)
 			 	 . success(function(respone){
 			 		 	$scope.getSource()();
 			 	 	})
@@ -105,7 +145,7 @@ app.controller('sourceController', function($scope, $http){
 		$scope.nid = list.ID;
 		$scope.nsource_category = list.SOURCE_CATEGORY,
 		$scope.nstatus = list.STATUS;
-			
+
 		
 	}
 	
@@ -123,7 +163,7 @@ app.controller('sourceController', function($scope, $http){
 				STATUS				: $scope.nstatus
 					
 			}
-			$http. put("http://localhost:9999/rest/source-category/update", put_data)
+			$http. put(URL_CLIENT+"source-category/update", put_data)
 			 	 . success(function(respone){
 			 		 	$scope.getSource()();
 			 	 	})

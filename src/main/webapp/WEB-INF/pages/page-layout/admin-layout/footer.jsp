@@ -1,6 +1,12 @@
 </div>
-<script
-	src="${pageContext.request.contextPath}/resources/static/javascript/plugins/jQuery/jQuery-2.2.0.min.js"></script>
+
+
+	
+	<script src="${pageContext.request.contextPath}/resources/static/javascript/plugins/jQuery/jQuery-2.2.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/static/javascript/dashboard.js"></script>
+	
+	<!-- call boot page library -->
+	<script src="${pageContext.request.contextPath}/resources/static/bootpage_lib/jquery.bootpag.js"></script>
 	<!-- jQuery UI 1.11.4 -->
 	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

@@ -1,14 +1,58 @@
 package com.phsarnet.client.controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.phsarnet.client.entities.Product;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
+	/*
+	 * Test scrape
+	 */
+	@RequestMapping(value="/testscrap", method = RequestMethod.POST)
+	public ModelAndView scrape(@RequestParam("url") String url,@RequestParam("rowselector") String row ,
+		   @RequestParam("imageselector") String imageselector ,@RequestParam("imageattribute") String imageattribute,@RequestParam("linkselector") String linkselector,@RequestParam("titleselector") String titleselector,@RequestParam("priceselector") String priceselector){
+		   ArrayList<Product>arr=new ArrayList<>();
+		   Map<String, Object> model = new HashMap<String, Object>();
+		   try {
+				org.jsoup.nodes.Document doc =Jsoup.connect(url).userAgent("Mozila").timeout(6000).get();
+				Elements els=doc.select(row);
+				for(Element el:els){
+					String title=el.select(titleselector).text();
+					String image=el.select(imageselector).attr(imageattribute);
+					String price=el.select(priceselector).text();
+					String link=el.select(linkselector).attr("href");
+					Product p=new Product();
+					p.setTitle(title);
+					p.setImage(image);
+					p.setPrice(price);
+					p.setUrl(link);
+					arr.add(p);
+				}
+				
+			    model.put("productlist",arr);
+			
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		return new ModelAndView("admin/testscrap", "model", model);
+	}
+	
 	
 	/*
 	 * Request dashboard page
@@ -110,4 +154,16 @@ public class AdminController {
 		return "admin/mapcategory";
 	}
 	
+	/**
+	 * Request test scrapping page
+	 * @param m
+	 * @return
+	 */
+	@RequestMapping(value="/testscrap", method = RequestMethod.GET)
+	public String scraptesting(ModelMap m)
+	{
+		m.addAttribute("title", "Admin >> Test-Scrape");
+		return "admin/testscrap";
+	}
+
 }

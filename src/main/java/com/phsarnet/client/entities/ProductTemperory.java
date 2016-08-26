@@ -25,11 +25,13 @@ public class ProductTemperory {
 	@JsonProperty("DATE")
 	private String datecreate;
 	
+	@JsonProperty("CATEGORY")
+	private SubTwoCategory subTwoCategory;
+	
 	@JsonProperty("SOURCE")
 	private SourceCategory sourceCategory;
 	
-	@JsonProperty("CATEGORY")
-	private SubTwoCategory subTwoCategory;
+	
 	
 	
 

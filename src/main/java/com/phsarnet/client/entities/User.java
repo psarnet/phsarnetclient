@@ -1,28 +1,34 @@
 package com.phsarnet.client.entities;
 
-/*
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;*/
+import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class User{
+
+public class User implements UserDetails{
 	
-	@JsonProperty("ID")
 	private int userid;
-	
-	@JsonProperty("USERNAME")
+
 	private String username;
 	
-	@JsonProperty("PASSWORD")
 	private String password;
 	
-	@JsonProperty("DESCRIPTION")
 	private String description;
 	
-	@JsonProperty("ROLE")
-	private String role;
+	private List<Role> roles;
 	
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
 	public int getUserid() {
 		return userid;
 	}
@@ -47,20 +53,41 @@ public class User{
 		this.password = password;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return roles;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 	
 	

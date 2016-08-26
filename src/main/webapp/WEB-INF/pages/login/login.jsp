@@ -30,7 +30,7 @@
 
 </head>
 <body style="background-color: rgba(60, 117, 188, 0.75);">
-	<form id="frmLogin" action="${pageContext.request.contextPath}/login"
+	<form id="frmLogin" action="${pageContext.request.contextPath}/phsarnet/login"
 		method="post">
 		<div class="panel panel-primary">
 			<div class="panel-heading">

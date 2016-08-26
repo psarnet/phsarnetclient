@@ -1,6 +1,9 @@
 package com.phsarnet.client.entities;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 
 public class SourceCategory {
@@ -19,6 +22,12 @@ public class SourceCategory {
 
 	@JsonProperty("SUB_CATEGORY")
 	private SubTwoCategory subCategory;
+	
+	@JsonProperty("LIST_PRODUCT")
+	private List<Product> listsProducts;
+	
+	@JsonProperty("LIST_PRODUCT_TMP")
+	private List<ProductTemperory> listsProductsTmp;
 	
 	public int getSourcecategoryid() {
 		return sourcecategoryid;
@@ -58,6 +67,22 @@ public class SourceCategory {
 
 	public void setSubCategory(SubTwoCategory subCategory) {
 		this.subCategory = subCategory;
+	}
+
+	public List<Product> getListsProducts() {
+		return listsProducts;
+	}
+
+	public void setListsProducts(List<Product> listsProducts) {
+		this.listsProducts = listsProducts;
+	}
+
+	public List<ProductTemperory> getListsProductsTmp() {
+		return listsProductsTmp;
+	}
+
+	public void setListsProductsTmp(List<ProductTemperory> listsProductsTmp) {
+		this.listsProductsTmp = listsProductsTmp;
 	}
 
 

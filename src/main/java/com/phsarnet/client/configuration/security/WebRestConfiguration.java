@@ -19,14 +19,6 @@ public class WebRestConfiguration {
 	@Autowired
 	Environment environment;
 	@Bean
-	public HttpHeaders header(){
-		HttpHeaders header=new HttpHeaders();
-		header.setContentType(MediaType.APPLICATION_JSON);
-		String apiUrl ="ZGV2OiFAI2FwaQ==";
-		header.set("Authorization","Basic "+apiUrl);
-		return header;
-	}
-	@Bean
 	public RestTemplate restTemplate(){
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
@@ -45,4 +37,20 @@ public class WebRestConfiguration {
 	public String KEY_HEADER(){
 		return environment.getProperty("PHSARNET.API.SERECT_HEADER");
 	}
+	
+	
+	@Bean(name="KNONGDAI_API_URL")
+	public String knongDaiApiUrl(){
+		return environment.getProperty("ACCOUNT.API.URL");
+	}
+	
+	@Bean(name="KNONGDAI_API_SECRET_HEADER")
+	public HttpHeaders knongDaiSecretHeader(){
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		String credentials = environment.getProperty("ACCOUNT.API.SECRET.HEADER");
+		headers.set("Authorization", "Basic " + credentials);
+		return headers;
+	}
+	
 }

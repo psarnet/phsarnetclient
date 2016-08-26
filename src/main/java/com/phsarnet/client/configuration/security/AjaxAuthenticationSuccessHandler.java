@@ -1,10 +1,12 @@
 package com.phsarnet.client.configuration.security;
 
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,22 +39,17 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
 	 * appropriate URL according to his/her role.
 	 */
 	private String determineTargetUrl(Authentication authentication) {
-
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-
 		List<String> roles = new ArrayList<String>();
-
 		for (GrantedAuthority authority : authorities) {
-			System.out.println(authority.getAuthority());
 			roles.add(authority.getAuthority());
-			System.out.println("Extract Role: " + authority.getAuthority());
 		}
-		if (roles.contains("ROLE_admin")) {
+		if (roles.contains("ROLE_ADMIN")) {
 			return "admin/dashboard";
 		}
-		else if(roles.contains("ROLE_user"))
+		else if(roles.contains("ROLE_USER"))
 		{
-			return "home/user";
+			return "";
 		}
 		else
 		{

@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,9 @@ import com.phsarnet.client.entities.SubOneCategory;
 import com.phsarnet.client.entities.SubTwoCategory;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/rest/sub-two-category")
+
 public class SubTwoCategoryRController {
 	@Autowired
 	private HttpHeaders httpHeader;
@@ -39,9 +42,8 @@ public class SubTwoCategoryRController {
 		
 		HttpEntity<Object> request = new HttpEntity<Object>(httpHeader);
 		ResponseEntity<Map> response = rest.exchange(WS_URL+"/sub-two-category/", HttpMethod.GET,request,Map.class);
-		
 		return new ResponseEntity<Map<String,Object>>(response.getBody(),HttpStatus.OK);
-	
+		
 	}
 	
 

@@ -21,6 +21,7 @@
 						<div class="form-group">
 							<label>Choose Main Category</label> 
 							<select class="form-control" name="main_category" ng-model="main_category" >
+								
 								<option ng-repeat="list in mainlists" value="{{list.ID}}">{{list.CATEGORY}}</option>
 							</select>
 						</div>
@@ -101,22 +102,12 @@
 										</div>
 
 										<div class="col-md-4 pull-right">
-											<form class="navbar-form" role="search">
-												<div class="pull-right" style="margin-top: -8px;">
-													<div class="input-group">
-														<div class="input-group-btn">
-															<input type="text" class="form-control"
-																placeholder="Search" name="srch-normal" id="search">
-														</div>
-														<div class="input-group-btn">
-															<button class="btn btn-default search"
-																style="height: 34px;" type="submit" name="btnSearch">
-																<span class="fa fa-search"></span>
-															</button>
-														</div>
-													</div>
-												</div>
-											</form>
+										<i class="fa fa-filter" aria-hidden="true"></i>
+											<label>FilterByMainCategory : </label>
+											<select name="mcategory" ng-model="mcategory" ng-change="filterSubCategory(mcategory)" data-ng-options="main as main.CATEGORY for main in getMainCategoryLists">
+												<option value="" selected="selected">..Show All.....</option>
+											</select>
+											
 										</div>
 								</th>
 							</tr>
@@ -125,18 +116,19 @@
 								<th>ID</th>
 								<th class="col-md-2">Category Name</th>
 								<th class="col-md-3">Date Create</th>
+								<th class="col-md-3">Main Category</th>
 								<th class="col-md-2">Action</th>
 							</tr>
 
 						</thead>
 						<tbody>
 						
-							<tr ng-repeat="list in lists">
+							<tr ng-repeat="list in lists" >
 							
-								<td>{{list.ID}}</td>
-								<td>{{list.SUB_CATEGORY}}</td>
-								<td>{{list.DATE}}</td>
-								
+								<td ng-bind="list.ID"></td>
+								<td ng-bind="list.SUB_CATEGORY"></td>
+								<td ng-bind="list.DATE"></td>
+								<td ng-bind="list.MAIN_CATEGORY.CATEGORY"></td>
 								<td>
 									<button type="button" class="btn btn-info btn-sm"
 										data-toggle="modal" data-target="#exampleModalEdit"
@@ -148,19 +140,10 @@
 
 						</tbody>
 					</table>
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="row no-print">
-					<div class="col-xs-12">
-						<button class="btn btn-primary pull-right"
-							onClick="window.print();">
-							<i class="fa fa-print"></i> Print
-						</button>
+					<div id="pagination">
+						<!-- Display pagination here -->
 					</div>
 				</div>
-
 			</div>
 		</div>
 </aside>

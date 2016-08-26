@@ -12,7 +12,7 @@ app.controller('userController', function($scope, $http){
 		Get main category 
 	*/
 	$scope.getUser = function(){
-		$http.get("http://localhost:9999/rest/user/get-all")
+		$http.get(URL_CLIENT+"user/get-all")
 		 .then(function(respone){
 			
 		 	$scope.lists = respone.data.DATA;	
@@ -58,7 +58,7 @@ app.controller('userController', function($scope, $http){
 			DESCRIPTION : $scope.description
 		}
 		alert(post_data);
-		$http. post("http://localhost:9999/rest/user/add", post_data)
+		$http. post(URL_CLIENT+"user/add", post_data)
 		 	 . success(function(respone){
 		 		 	$scope.getUser();
 		 	 	})
@@ -74,7 +74,7 @@ app.controller('userController', function($scope, $http){
 		
 		var conf = confirm("Are you sure want to delete?");
 		if(conf){
-			$http. delete("http://localhost:9999/rest/user/delete/"+ id)
+			$http. delete(URL_CLIENT+"user/delete/"+ id)
 			 	 . success(function(respone){
 			 		 	$scope.getUser()();
 			 	 	})
@@ -105,7 +105,7 @@ app.controller('userController', function($scope, $http){
 				ID : $scope.id, 
 				SUB_CATEGORY : $scope.category
 			}
-			$http. put("http://localhost:9999/rest/user/update", put_data)
+			$http. put(URL_CLIENT+"user/update", put_data)
 			 	 . success(function(respone){
 			 		 	$scope.getUser()();
 			 	 	})

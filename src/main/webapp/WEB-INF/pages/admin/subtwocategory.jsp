@@ -35,6 +35,7 @@
 						</div>
 					</form>
 				</div>
+
 			</div>
 		</div>
 	</div>
@@ -101,22 +102,13 @@
 										</div>
 
 										<div class="col-md-4 pull-right">
-											<form class="navbar-form" role="search">
-												<div class="pull-right" style="margin-top: -8px;">
-													<div class="input-group">
-														<div class="input-group-btn">
-															<input type="text" class="form-control"
-																placeholder="Search" name="srch-normal" id="search">
-														</div>
-														<div class="input-group-btn">
-															<button class="btn btn-default search"
-																style="height: 34px;" type="submit" name="btnSearch">
-																<span class="fa fa-search"></span>
-															</button>
-														</div>
-													</div>
-												</div>
-											</form>
+											<i class="fa fa-filter" aria-hidden="true"></i>
+											<label>FilterBySubOneCategory : </label>
+											<select name="mcategory" ng-model="mcategory" 
+												ng-change="filterSubCategory(mcategory)" 
+												data-ng-options="main as main.SUB_CATEGORY for main in getMainCategoryLists">
+												<option value="" selected="selected">..Show All.....</option>
+											</select>
 										</div>
 								</th>
 							</tr>
@@ -144,24 +136,14 @@
 									<button type="button" class="btn btn-danger btn-sm" ng-click="deleteByID(list.ID)">Delete</button>
 								</td>
 							</tr>
-
-
 						</tbody>
 					</table>
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="row no-print">
-					<div class="col-xs-12">
-						<button class="btn btn-primary pull-right"
-							onClick="window.print();">
-							<i class="fa fa-print"></i> Print
-						</button>
+					<div id="pagination">
+						<!-- Display pagination here -->
 					</div>
 				</div>
-
 			</div>
+			
 		</div>
 </aside>
 

@@ -8,36 +8,64 @@ var app = angular.module('category_app', []);
 */
 app.controller('categoryController', function($scope, $http){
 	
-	/**
-	 * 
-	 * Get main category lists
-	 */
-	$http.get("http://localhost:9999/rest/main-category/get-all")
-	 .then(function(respone){
-	 	$scope.mainlists = respone.data.DATA;			
+	var pagin = {
+			page:1,
+			limit:20
+		};
+
+	var PAGINATION = $('#pagination');
+
+	PAGINATION.on("page", function(event, num){
+		pagin.page = num;
+		$scope.getCategory();
 	});
 	
-	
 	/**
-		Get main category 
+	Get main category 
 	*/
 	$scope.getCategory = function(){
-		$http.get("http://localhost:9999/rest/sub-two-category/get-all")
-		 .then(function(respone){
-			
-		 	$scope.lists = respone.data.DATA;	
-		 	
+		
+		$http({
+			url: URL_API+'sub-one-category',
+			method: 'GET',
+			params: pagin,
+			headers: {'Authorization': 'Basic ZGV2OiFAI2FwaQ=='} 
+		}).then(function(response){
+			console.log(response.data.DATA+"get data");
+			PAGINATION.bootpag({
+			    total: response.data.PAGING.TOTAL_PAGES
+			});
+			 $scope.lists = response.data.DATA;	
 		});
-		/*.error(function(status){
-			console.log(status);
-		});*/
+	
 	};
+	/*$scope.getCategory = function(){
+		$http.get(URL_CLIENT+"sub-one-category/get-all")
+		 .then(function(respone){
+		 	$scope.lists = respone.data.DATA;	
+	
+		});
+	};*/
 	
 	/**
 	 * Call Get main category function
 	 * 
 	 */
 	$scope.getCategory();
+
+	
+	/**
+	 * 
+	 * Get main category lists
+	 */
+	$http.get(URL_CLIENT+"main-category/get-all")
+	 .then(function(respone){
+	 	$scope.mainlists = respone.data.DATA;			
+	});
+	
+	
+	
+
 	
 	
 	/**
@@ -57,7 +85,7 @@ app.controller('categoryController', function($scope, $http){
 			}
 		}
 		
-		$http. post("http://localhost:9999/rest/sub-one-category/add", post_data)
+		$http. post(URL_CLIENT+"sub-one-category/add", post_data)
 		 	 . success(function(respone){
 		 		 	$scope.getCategory();
 		 	 	})
@@ -72,7 +100,7 @@ app.controller('categoryController', function($scope, $http){
 	$scope.deleteByID = function(id){
 		var conf = confirm("Are you sure want to delete?");
 		if(conf){
-			$http. delete("http://localhost:9999/rest/sub-one-category/delete/"+ id)
+			$http. delete(URL_CLIENT+"sub-one-category/delete/"+ id)
 			 	 . success(function(respone){
 			 		 	$scope.getCategory();
 			 	 	})
@@ -103,7 +131,7 @@ app.controller('categoryController', function($scope, $http){
 				ID : $scope.id, 
 				SUB_CATEGORY : $scope.category
 			}
-			$http. put("http://localhost:9999/rest/sub-one-category/update", put_data)
+			$http. put(URL_CLIENT+"sub-one-category/update", put_data)
 			 	 . success(function(respone){
 			 		 	$scope.getCategory();
 			 	 	})
@@ -114,5 +142,29 @@ app.controller('categoryController', function($scope, $http){
 		
 	}
 	
+	
+	/**
+	 * Get Data from Main-Category as List
+	 */
+	$http.get(URL_CLIENT+"main-category/get-main-category-object")
+		.then(function(respone){
+			$scope.getMainCategoryLists = respone.data.DATA;	
+		});
+	
+	/**
+	* Get sub one category in get 
+	*/
+	$scope.subOne = [];
+	$scope.filterSubCategory = function(e){
+		if(e != null)
+		{
+			PAGINATION.hide();
+			$scope.subOne = e.SUB_CATEGORY;
+			$scope.lists = $scope.subOne;
+			return;
+		}
+		$scope.getCategory();
+		PAGINATION.show();
+	}
 	
 });

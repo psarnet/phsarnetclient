@@ -12,13 +12,10 @@ app.controller('categoryController', function($scope, $http){
 		Get main category 
 	*/
 	$scope.getMainCategory = function(){
-		$http.get("http://localhost:9999/rest/main-category/get-all")
+		$http.get(URL_CLIENT+"main-category/get-all")
 		 .then(function(respone){
 		 	$scope.lists = respone.data.DATA;			
 		});
-		/*.error(function(status){
-			console.log(status);
-		});*/
 	};
 	
 	/**
@@ -41,7 +38,7 @@ app.controller('categoryController', function($scope, $http){
 			CATEGORY : $scope.mcategory
 		}
 		
-		$http. post("http://localhost:9999/rest/main-category/add", post_data)
+		$http. post(URL_CLIENT+"main-category/add", post_data)
 		 	 . success(function(respone){
 		 		 	$scope.getMainCategory();
 		 	 	})
@@ -56,7 +53,7 @@ app.controller('categoryController', function($scope, $http){
 	$scope.deleteByID = function(id){
 		var conf = confirm("Are you sure want to delete?");
 		if(conf){
-			$http. delete("http://localhost:9999/rest/main-category/delete/"+ id)
+			$http. delete(URL_CLIENT+"main-category/delete/"+ id)
 			 	 . success(function(respone){
 			 		 	$scope.getMainCategory();
 			 	 	})
@@ -86,7 +83,7 @@ app.controller('categoryController', function($scope, $http){
 				ID : $scope.id, 
 				CATEGORY : $scope.category
 			}
-			$http. put("http://localhost:9999/rest/main-category/update", put_data)
+			$http. put(URL_CLIENT+"main-category/update", put_data)
 			 	 . success(function(respone){
 			 		 	$scope.getMainCategory();
 			 	 	})
